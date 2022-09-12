@@ -1,7 +1,6 @@
-import express, { Request, Response, Router } from 'express';
+import express, { Router } from 'express';
 import UserHandler from '../../../handlers/userHandler';
 import verifyAuthToken from '../../../middleware/verifyAuthToken';
-import jwt from 'jsonwebtoken';
 
 const userRouter: Router = express.Router();
 userRouter.get('/', verifyAuthToken, UserHandler.index);

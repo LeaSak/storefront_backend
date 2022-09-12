@@ -44,151 +44,166 @@ var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var UserHandler = /** @class */ (function () {
     function UserHandler() {
     }
-    var _a;
-    _a = UserHandler;
-    UserHandler.index = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var users, error_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, user_1.UserStore.index()];
-                case 1:
-                    users = _b.sent();
-                    res.json(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _b.sent();
-                    res.status(400).json(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    UserHandler.index = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var users, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, user_1.UserStore.index()];
+                    case 1:
+                        users = _a.sent();
+                        res.json(users);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        res.status(400).json(error_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    UserHandler.show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var user, error_2;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, user_1.UserStore.show(req.params.id)];
-                case 1:
-                    user = _b.sent();
-                    res.json(user);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.status(400).json(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    UserHandler.show = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, user_1.UserStore.show(req.params.id)];
+                    case 1:
+                        user = _a.sent();
+                        res.json(user);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        res.status(400).json(error_2);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    UserHandler.create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var user, createdUser, token, error_3;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    user = {
-                        username: req.body.username,
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname,
-                        password: req.body.password,
-                    };
-                    _b.label = 1;
-                case 1:
-                    _b.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, user_1.UserStore.create(user)];
-                case 2:
-                    createdUser = _b.sent();
-                    token = jsonwebtoken_1.default.sign({ user: createdUser }, process.env.TOKEN_SECRET);
-                    res.json(token);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_3 = _b.sent();
-                    res.status(400).json(error_3);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+    };
+    ;
+    UserHandler.create = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, createdUser, token, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        user = {
+                            username: req.body.username,
+                            firstname: req.body.firstname,
+                            lastname: req.body.lastname,
+                            password: req.body.password,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, user_1.UserStore.create(user)];
+                    case 2:
+                        createdUser = _a.sent();
+                        token = jsonwebtoken_1.default.sign({ user: createdUser }, process.env.TOKEN_SECRET);
+                        res.json(token);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_3 = _a.sent();
+                        res.status(400).json(error_3);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    UserHandler.update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var user, token, e_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    user = {
-                        id: parseInt(req.params.id),
-                        username: req.body.username,
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname,
-                        password: req.body.password,
-                    };
-                    _b.label = 1;
-                case 1:
-                    _b.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, user_1.UserStore.update(user)];
-                case 2:
-                    _b.sent();
-                    token = jsonwebtoken_1.default.sign({ user: user }, process.env.TOKEN_SECRET);
-                    res.status(200).json(token);
-                    return [3 /*break*/, 4];
-                case 3:
-                    e_1 = _b.sent();
-                    res.status(500).json(e_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+    };
+    ;
+    UserHandler.update = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, token, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        user = {
+                            id: parseInt(req.params.id),
+                            username: req.body.username,
+                            firstname: req.body.firstname,
+                            lastname: req.body.lastname,
+                            password: req.body.password,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, user_1.UserStore.update(user)];
+                    case 2:
+                        _a.sent();
+                        token = jsonwebtoken_1.default.sign({ user: user }, process.env.TOKEN_SECRET);
+                        res.status(200).json(token);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        res.status(500).json(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    UserHandler.destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var deleted, error_4;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, user_1.UserStore.delete(parseInt(req.params.id))];
-                case 1:
-                    deleted = _b.sent();
-                    res.json(deleted);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_4 = _b.sent();
-                    res.status(400).json(error_4);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    UserHandler.destroy = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var deleted, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, user_1.UserStore.delete(parseInt(req.params.id))];
+                    case 1:
+                        deleted = _a.sent();
+                        res.json(deleted);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        res.status(400).json(error_4);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    UserHandler.authenticate = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var user, result, token, error_5;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    user = {
-                        username: req.body.username,
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname,
-                        password: req.body.password,
-                    };
-                    _b.label = 1;
-                case 1:
-                    _b.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, user_1.UserStore.authenticate(user.username, user.password)];
-                case 2:
-                    result = _b.sent();
-                    token = jsonwebtoken_1.default.sign({ user: result }, process.env.TOKEN_SECRET);
-                    res.json(token);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_5 = _b.sent();
-                    res.status(401).json(error_5);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+    };
+    ;
+    UserHandler.authenticate = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, result, token, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        user = {
+                            username: req.body.username,
+                            firstname: req.body.firstname,
+                            lastname: req.body.lastname,
+                            password: req.body.password,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, user_1.UserStore.authenticate(user.username, user.password)];
+                    case 2:
+                        result = _a.sent();
+                        token = jsonwebtoken_1.default.sign({ user: result }, process.env.TOKEN_SECRET);
+                        res.json(token);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_5 = _a.sent();
+                        res.status(401).json(error_5);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    }); };
+    };
+    ;
     return UserHandler;
 }());
 exports.default = UserHandler;
-;

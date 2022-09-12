@@ -1,26 +1,29 @@
 import { Request, Response } from 'express';
-import { Product, ProductStore } from '../models/product';
+import { Product, Product_DB, ProductStore } from '../models/product';
 
 export default class ProductHandler {
-  static index = async (_req: Request, res: Response) => {
+  static async index(
+    _req: Request,
+    res: Response
+  ): Promise<Product_DB[] | void> {
     try {
       const products = await ProductStore.index();
       res.status(200).json(products);
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static show = async (req: Request, res: Response) => {
+  static async show(req: Request, res: Response): Promise<Product_DB | void> {
     try {
       const product = await ProductStore.show(parseInt(req.params.id));
       res.status(200).json(product);
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static create = async (req: Request, res: Response) => {
+  static async create(req: Request, res: Response): Promise<Product_DB | void> {
     try {
       const product: Product = {
         name: req.body.name,
@@ -32,18 +35,18 @@ export default class ProductHandler {
     } catch (err) {
       res.status(400).json(err);
     }
-  };
+  }
 
-  static destroy = async (req: Request, res: Response) => {
+  static async destroy(req: Request, res: Response): Promise<void> {
     try {
       const deleted = await ProductStore.delete(parseInt(req.params.id));
       res.json(deleted);
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static update = async (req: Request, res: Response) => {
+  static async update(req: Request, res: Response): Promise<Product_DB | void> {
     try {
       const product: Product = {
         name: req.body.name,
@@ -58,5 +61,5 @@ export default class ProductHandler {
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 }

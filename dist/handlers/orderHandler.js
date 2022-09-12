@@ -41,137 +41,151 @@ var orderProduct_1 = require("../models/orderProduct");
 var OrderHandler = /** @class */ (function () {
     function OrderHandler() {
     }
-    var _a;
-    _a = OrderHandler;
-    OrderHandler.index = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var orders, error_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, order_1.OrderStore.index()];
-                case 1:
-                    orders = _b.sent();
-                    res.status(200).json(orders);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _b.sent();
-                    res.status(400).json(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    OrderHandler.index = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var orders, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, order_1.OrderStore.index()];
+                    case 1:
+                        orders = _a.sent();
+                        res.status(200).json(orders);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        res.status(400).json(error_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    OrderHandler.show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var order, error_2;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, order_1.OrderStore.show(parseInt(req.params.user_id))];
-                case 1:
-                    order = _b.sent();
-                    res.status(200).json(order);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.status(400).json(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    OrderHandler.show = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var order, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, order_1.OrderStore.show(parseInt(req.params.user_id))];
+                    case 1:
+                        order = _a.sent();
+                        res.status(200).json(order);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        res.status(400).json(error_2);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    OrderHandler.create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var order, createdProduct, err_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    order = {
-                        status: req.body.status,
-                        user_id: req.body.user_id,
-                    };
-                    return [4 /*yield*/, order_1.OrderStore.create(order)];
-                case 1:
-                    createdProduct = _b.sent();
-                    res.json(createdProduct);
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_1 = _b.sent();
-                    res.status(400).json(err_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    OrderHandler.create = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var order, createdProduct, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        order = {
+                            status: req.body.status,
+                            user_id: req.body.user_id,
+                        };
+                        return [4 /*yield*/, order_1.OrderStore.create(order)];
+                    case 1:
+                        createdProduct = _a.sent();
+                        res.json(createdProduct);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        res.status(400).json(err_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    OrderHandler.addProduct = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var orderId, productId, quantity, addedProduct, err_2;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    orderId = req.params.id;
-                    productId = req.body.product_id;
-                    quantity = req.body.quantity;
-                    _b.label = 1;
-                case 1:
-                    _b.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, orderProduct_1.OrderProductStore.addProduct(quantity, parseInt(orderId), productId)];
-                case 2:
-                    addedProduct = _b.sent();
-                    res.json(addedProduct);
-                    return [3 /*break*/, 4];
-                case 3:
-                    err_2 = _b.sent();
-                    res.status(400);
-                    res.json(err_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+    };
+    ;
+    OrderHandler.addProduct = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var orderId, productId, quantity, addedProduct, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        orderId = req.params.id;
+                        productId = req.body.product_id;
+                        quantity = req.body.quantity;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, orderProduct_1.OrderProductStore.addProduct(quantity, parseInt(orderId), productId)];
+                    case 2:
+                        addedProduct = _a.sent();
+                        res.json(addedProduct);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_2 = _a.sent();
+                        res.status(400);
+                        res.json(err_2);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    OrderHandler.destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var deleted, error_3;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, order_1.OrderStore.delete(parseInt(req.params.id))];
-                case 1:
-                    deleted = _b.sent();
-                    res.json(deleted);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _b.sent();
-                    res.status(400).json(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    OrderHandler.destroy = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var deleted, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, order_1.OrderStore.delete(parseInt(req.params.id))];
+                    case 1:
+                        deleted = _a.sent();
+                        res.json(deleted);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        res.status(400).json(error_3);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    OrderHandler.update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var order, updated, error_4;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    order = {
-                        status: req.body.status,
-                        user_id: req.body.user_id,
-                    };
-                    return [4 /*yield*/, order_1.OrderStore.update(parseInt(req.params.id), order)];
-                case 1:
-                    updated = _b.sent();
-                    res.json(updated);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_4 = _b.sent();
-                    res.status(400).json(error_4);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    OrderHandler.update = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var order, updated, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        order = {
+                            status: req.body.status,
+                            user_id: req.body.user_id,
+                        };
+                        return [4 /*yield*/, order_1.OrderStore.update(parseInt(req.params.id), order)];
+                    case 1:
+                        updated = _a.sent();
+                        res.json(updated);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        res.status(400).json(error_4);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
+    };
+    ;
     return OrderHandler;
 }());
 exports.default = OrderHandler;
-;

@@ -40,114 +40,126 @@ var product_1 = require("../models/product");
 var ProductHandler = /** @class */ (function () {
     function ProductHandler() {
     }
-    var _a;
-    _a = ProductHandler;
-    ProductHandler.index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var products, error_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, product_1.ProductStore.index()];
-                case 1:
-                    products = _b.sent();
-                    res.status(200).json(products);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _b.sent();
-                    res.status(400).json(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    ProductHandler.index = function (_req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var products, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, product_1.ProductStore.index()];
+                    case 1:
+                        products = _a.sent();
+                        res.status(200).json(products);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        res.status(400).json(error_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    ProductHandler.show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var product, error_2;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, product_1.ProductStore.show(parseInt(req.params.id))];
-                case 1:
-                    product = _b.sent();
-                    res.status(200).json(product);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.status(400).json(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    ProductHandler.show = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var product, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, product_1.ProductStore.show(parseInt(req.params.id))];
+                    case 1:
+                        product = _a.sent();
+                        res.status(200).json(product);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        res.status(400).json(error_2);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    ProductHandler.create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var product, createdProduct, err_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    product = {
-                        name: req.body.name,
-                        price: parseInt(req.body.price),
-                        category: req.body.category,
-                    };
-                    return [4 /*yield*/, product_1.ProductStore.create(product)];
-                case 1:
-                    createdProduct = _b.sent();
-                    res.json(createdProduct);
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_1 = _b.sent();
-                    res.status(400).json(err_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    ProductHandler.create = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var product, createdProduct, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        product = {
+                            name: req.body.name,
+                            price: parseInt(req.body.price),
+                            category: req.body.category,
+                        };
+                        return [4 /*yield*/, product_1.ProductStore.create(product)];
+                    case 1:
+                        createdProduct = _a.sent();
+                        res.json(createdProduct);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        res.status(400).json(err_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    ProductHandler.destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var deleted, error_3;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, product_1.ProductStore.delete(parseInt(req.params.id))];
-                case 1:
-                    deleted = _b.sent();
-                    res.json(deleted);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _b.sent();
-                    res.status(400).json(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    ProductHandler.destroy = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var deleted, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, product_1.ProductStore.delete(parseInt(req.params.id))];
+                    case 1:
+                        deleted = _a.sent();
+                        res.json(deleted);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        res.status(400).json(error_3);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
-    ProductHandler.update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var product, updated, error_4;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    product = {
-                        name: req.body.name,
-                        price: parseInt(req.body.price),
-                        category: req.body.category,
-                    };
-                    return [4 /*yield*/, product_1.ProductStore.update(parseInt(req.params.id), product)];
-                case 1:
-                    updated = _b.sent();
-                    res.json(updated);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_4 = _b.sent();
-                    res.status(400).json(error_4);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+    };
+    ;
+    ProductHandler.update = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var product, updated, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        product = {
+                            name: req.body.name,
+                            price: parseInt(req.body.price),
+                            category: req.body.category,
+                        };
+                        return [4 /*yield*/, product_1.ProductStore.update(parseInt(req.params.id), product)];
+                    case 1:
+                        updated = _a.sent();
+                        res.json(updated);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        res.status(400).json(error_4);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    }); };
+    };
+    ;
     return ProductHandler;
 }());
 exports.default = ProductHandler;
-;

@@ -3,25 +3,25 @@ import { User, User_DB, UserStore } from '../models/user';
 import jwt from 'jsonwebtoken';
 
 export default class UserHandler {
-  static index = async (req: Request, res: Response) => {
+  static async index(req: Request, res: Response): Promise<User_DB | void> {
     try {
       const users = await UserStore.index();
       res.json(users);
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static show = async (req: Request, res: Response) => {
+  static async show(req: Request, res: Response): Promise<User_DB | void> {
     try {
       const user = await UserStore.show(req.params.id);
       res.json(user);
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static create = async (req: Request, res: Response) => {
+  static async create(req: Request, res: Response): Promise<string | void> {
     const user: User = {
       username: req.body.username as string,
       firstname: req.body.firstname as string,
@@ -38,9 +38,9 @@ export default class UserHandler {
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static update = async (req: Request, res: Response): Promise<void> => {
+  static async update(req: Request, res: Response): Promise<string | void> {
     const user: User_DB = {
       id: parseInt(req.params.id) as number,
       username: req.body.username as string,
@@ -58,18 +58,21 @@ export default class UserHandler {
     } catch (e) {
       res.status(500).json(e);
     }
-  };
+  }
 
-  static destroy = async (req: Request, res: Response) => {
+  static async destroy(req: Request, res: Response): Promise<void> {
     try {
       const deleted = await UserStore.delete(parseInt(req.params.id));
       res.json(deleted);
     } catch (error) {
       res.status(400).json(error);
     }
-  };
+  }
 
-  static authenticate = async (req: Request, res: Response): Promise<void> => {
+  static async authenticate(
+    req: Request,
+    res: Response
+  ): Promise<string | void> {
     const user: User = {
       username: req.body.username as string,
       firstname: req.body.firstname as string,
@@ -86,5 +89,5 @@ export default class UserHandler {
     } catch (error) {
       res.status(401).json(error);
     }
-  };
+  }
 }

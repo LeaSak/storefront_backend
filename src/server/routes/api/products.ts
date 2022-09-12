@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from 'express';
+import express, { Router } from 'express';
 import ProductHandler from '../../../handlers/productHandler';
 import verifyAuthToken from '../../../middleware/verifyAuthToken';
 

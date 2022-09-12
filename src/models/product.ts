@@ -90,7 +90,7 @@ export class ProductStore {
     }
   }
 
-  static async delete(id: number): Promise<Product_DB> {
+  static async delete(id: number): Promise<void> {
     try {
       if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
         throw Error('Missing id');
