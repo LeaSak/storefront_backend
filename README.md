@@ -5,7 +5,7 @@
 This repo contains a basic Node and Express app to build a basic backend store api.
 
 ## Required Technologies
-Your application must make use of the following libraries:
+The application uses the following libraries:
 - Postgres for the database
 - Node/Express for the application logic
 - dotenv from npm for managing environment variables
@@ -14,14 +14,14 @@ Your application must make use of the following libraries:
 - jasmine from npm for testing
 
 ## Project Setup
+This project has been developed locally. You need to take a few steps to get it running.
 
-### 1. Enviroment variables
-Create a plain text file and call it '.env'. Add environment variables like the ones created in the .envExample file. This needs to be in the project's root directory.
-If the `ENV` variable is set to test, the `store_test` database will be used instead of the `store` database later on. All tests are run on the test database.
+### 1. Environment variables
+Create a plain text file and call it '.env'. Add environment variables like the ones created in the .envExample file. This needs to be in the project's root directory. If the `ENV` variable is set to test, the test environment variables will be used. See the `database.config.json`. All tests are run on the test database. Therefore a test database will need to be setup for tests to run.
 
 ### 2. Databases
-Make sure you have installed postgres and can use it in your terminal.
- - Create your test user using the value from your environment variable: Run `sudo -u postgres createuser -P -d <testusername>`. Assign a password.
+ - Make sure you have installed postgres and can use it in your terminal. You also need access to the terminal wuth sudo privileges and postgres user.
+ - Create your test user using the value from your environment variable: Run `sudo -u postgres createuser -P -d -e <testusername>`. Assign a password. You  will need to enter this twice.
  - Build your databases for dev and/or test using the values from your environment variables: Run `sudo -u postgres createdb -O <testusername> <testdatabasename>`
  - Create tables `db-migrate up`
 
@@ -37,5 +37,5 @@ Make sure you have installed postgres and can use it in your terminal.
  - Drop tables `db-migrate down`
 
 ## API Endpoints
-Please see routes listed in `REQUIUREMENTS.md`  
+Please see routes listed in `REQUIREMENTS.md`  
 
