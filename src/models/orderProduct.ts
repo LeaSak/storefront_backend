@@ -6,7 +6,7 @@ export interface OrderProduct extends Order_DB {
 }
 
 export class OrderProductStore {
-  async addProduct(
+  static async addProduct(
     quantity: number,
     orderId: number,
     productId: number

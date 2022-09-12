@@ -11,7 +11,7 @@ export interface Product_DB extends Product {
 }
 
 export class ProductStore {
-  async index(): Promise<Product_DB[]> {
+  static async index(): Promise<Product_DB[]> {
     try {
       const conn = await Client.connect();
       const sql = 'SELECT * FROM products';
@@ -23,7 +23,7 @@ export class ProductStore {
     }
   }
 
-  async show(id: number): Promise<Product_DB> {
+  static async show(id: number): Promise<Product_DB> {
     try {
       if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
         throw Error('Missing id');
@@ -41,7 +41,7 @@ export class ProductStore {
     }
   }
 
-  async create(product: Product): Promise<Product_DB> {
+  static async create(product: Product): Promise<Product_DB> {
     try {
       if (!product || !product.name || !product.category) {
         throw Error('Missing product information');
@@ -65,7 +65,7 @@ export class ProductStore {
     }
   }
 
-  async update(id: number, product: Product): Promise<Product_DB> {
+  static async update(id: number, product: Product): Promise<Product_DB> {
     try {
       if (Number.isNaN(id) || !product || !product.name || !product.category) {
         throw Error('Missing product information');
@@ -90,7 +90,7 @@ export class ProductStore {
     }
   }
 
-  async delete(id: number): Promise<Product_DB> {
+  static async delete(id: number): Promise<Product_DB> {
     try {
       if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
         throw Error('Missing id');

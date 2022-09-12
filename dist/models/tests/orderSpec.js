@@ -39,9 +39,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var order_1 = require("../order");
 var user_1 = require("../user");
 var product_1 = require("../product");
-var store = new order_1.OrderStore();
-var userStore = new user_1.UserStore();
-var productStore = new product_1.ProductStore();
 var testOrder;
 var testOrder2;
 var testUser;
@@ -49,7 +46,7 @@ var originalTimeout;
 beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userStore.create({
+            case 0: return [4 /*yield*/, user_1.UserStore.create({
                     username: 'susancherry',
                     firstname: 'susan',
                     lastname: 'cherry',
@@ -57,19 +54,19 @@ beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
                 })];
             case 1:
                 testUser = _a.sent();
-                return [4 /*yield*/, store.create({
+                return [4 /*yield*/, order_1.OrderStore.create({
                         status: 'active',
                         user_id: testUser.id,
                     })];
             case 2:
                 testOrder = _a.sent();
-                return [4 /*yield*/, store.create({
+                return [4 /*yield*/, order_1.OrderStore.create({
                         status: 'complete',
                         user_id: testUser.id,
                     })];
             case 3:
                 testOrder2 = _a.sent();
-                return [4 /*yield*/, productStore.create({
+                return [4 /*yield*/, product_1.ProductStore.create({
                         name: 'Cherries',
                         price: 2,
                         category: 'Fruit',
@@ -84,16 +81,16 @@ beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
 }); });
 describe('OrderModel', function () {
     it('should have an index method', function () {
-        expect(store.index).toBeDefined();
+        expect(order_1.OrderStore.index).toBeDefined();
     });
     it('should have a show method', function () {
-        expect(store.show).toBeDefined();
+        expect(order_1.OrderStore.show).toBeDefined();
     });
     it('should have a create method', function () {
-        expect(store.create).toBeDefined();
+        expect(order_1.OrderStore.create).toBeDefined();
     });
     it('should have an update method', function () {
-        expect(store.create).toBeDefined();
+        expect(order_1.OrderStore.create).toBeDefined();
     });
     it('create method should add an order', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -105,7 +102,7 @@ describe('OrderModel', function () {
         var orders;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.show(testUser.id)];
+                case 0: return [4 /*yield*/, order_1.OrderStore.show(testUser.id)];
                 case 1:
                     orders = _a.sent();
                     expect(orders.length).not.toBe(0);
@@ -117,7 +114,7 @@ describe('OrderModel', function () {
         var updatedOrder;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.update(testOrder.id, {
+                case 0: return [4 /*yield*/, order_1.OrderStore.update(testOrder.id, {
                         status: 'complete',
                         user_id: testUser.id,
                     })];
@@ -132,7 +129,7 @@ describe('OrderModel', function () {
         var deletedOrder;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.delete(testOrder2.id)];
+                case 0: return [4 /*yield*/, order_1.OrderStore.delete(testOrder2.id)];
                 case 1:
                     deletedOrder = _a.sent();
                     expect(deletedOrder).toEqual(undefined);

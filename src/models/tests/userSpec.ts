@@ -1,11 +1,10 @@
 import { UserStore, User_DB } from '../user';
 
-const store = new UserStore();
 let testUser: User_DB;
 let originalTimeout: number;
 
 beforeAll(async (): Promise<void> => {
-  testUser = await store.create({
+  testUser = await UserStore.create({
     username: 'billbrown',
     firstname: 'bill',
     lastname: 'brown',
@@ -18,23 +17,23 @@ beforeAll(async (): Promise<void> => {
 
 describe('UserModel', (): void => {
   it('should have an index method', () => {
-    expect(store.index).toBeDefined();
+    expect(UserStore.index).toBeDefined();
   });
 
   it('should have a show method', (): void => {
-    expect(store.show).toBeDefined();
+    expect(UserStore.show).toBeDefined();
   });
 
   it('should have a create method', (): void => {
-    expect(store.create).toBeDefined();
+    expect(UserStore.create).toBeDefined();
   });
 
   it('should have an update method', (): void => {
-    expect(store.create).toBeDefined();
+    expect(UserStore.create).toBeDefined();
   });
 
   it('should have an authenticate method', (): void => {
-    expect(store.authenticate).toBeDefined();
+    expect(UserStore.authenticate).toBeDefined();
   });
 
   it('create method should add a user', async (): Promise<void> => {
@@ -42,13 +41,13 @@ describe('UserModel', (): void => {
   });
 
   it('authenticate should recognise user', async (): Promise<void> => {
-    const user = await store.create({
+    const user = await UserStore.create({
       username: 'bobbybrown',
       firstname: 'bobby',
       lastname: 'brown',
       password: 'fruitandnuts',
     });
-    const result = (await store.authenticate(
+    const result = (await UserStore.authenticate(
       user.username,
       'fruitandnuts'
     )) || {
@@ -60,7 +59,7 @@ describe('UserModel', (): void => {
   });
 
   it('update method should update the user data', async (): Promise<void> => {
-    const updatedUser = await store.update({
+    const updatedUser = await UserStore.update({
       id: testUser.id,
       username: 'billblue',
       firstname: 'bill',
@@ -71,13 +70,13 @@ describe('UserModel', (): void => {
   });
 
   it('delete method should delete the entry', async (): Promise<void> => {
-    const user = await store.create({
+    const user = await UserStore.create({
       username: 'billybrown',
       firstname: 'billy',
       lastname: 'brown',
       password: 'strawberriesandcream',
     });
-    const deletedUser = await store.delete(user.id);
+    const deletedUser = await UserStore.delete(user.id);
     expect(deletedUser).toEqual(undefined);
   });
 });

@@ -38,20 +38,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductStore = void 0;
 var database_1 = __importDefault(require("../database"));
 var ProductStore = /** @class */ (function () {
     function ProductStore() {
     }
-    ProductStore.prototype.index = function () {
+    ProductStore.index = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM products';
@@ -68,7 +68,7 @@ var ProductStore = /** @class */ (function () {
             });
         });
     };
-    ProductStore.prototype.show = function (id) {
+    ProductStore.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, err_2;
             return __generator(this, function (_a) {
@@ -79,7 +79,7 @@ var ProductStore = /** @class */ (function () {
                             throw Error('Missing id');
                         }
                         sql = 'SELECT * FROM products WHERE id=($1)';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];
@@ -95,7 +95,7 @@ var ProductStore = /** @class */ (function () {
             });
         });
     };
-    ProductStore.prototype.create = function (product) {
+    ProductStore.create = function (product) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, createdProduct, err_3;
             return __generator(this, function (_a) {
@@ -106,7 +106,7 @@ var ProductStore = /** @class */ (function () {
                             throw Error('Missing product information');
                         }
                         sql = 'INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [
@@ -127,7 +127,7 @@ var ProductStore = /** @class */ (function () {
             });
         });
     };
-    ProductStore.prototype.update = function (id, product) {
+    ProductStore.update = function (id, product) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, updatedProduct, err_4;
             return __generator(this, function (_a) {
@@ -138,7 +138,7 @@ var ProductStore = /** @class */ (function () {
                             throw Error('Missing product information');
                         }
                         sql = 'UPDATE products SET name=($1), price=($2), category=($3) WHERE id=($4) RETURNING *;';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [
@@ -160,7 +160,7 @@ var ProductStore = /** @class */ (function () {
             });
         });
     };
-    ProductStore.prototype["delete"] = function (id) {
+    ProductStore.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, deletedProduct, err_5;
             return __generator(this, function (_a) {
@@ -171,7 +171,7 @@ var ProductStore = /** @class */ (function () {
                             throw Error('Missing id');
                         }
                         sql = 'DELETE FROM products WHERE id=($1)';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];

@@ -40,10 +40,6 @@ var order_1 = require("../order");
 var user_1 = require("../user");
 var product_1 = require("../product");
 var orderProduct_1 = require("../orderProduct");
-var store = new orderProduct_1.OrderProductStore();
-var orderStore = new order_1.OrderStore();
-var userStore = new user_1.UserStore();
-var productStore = new product_1.ProductStore();
 var testOrder;
 var testUser;
 var testProduct;
@@ -51,7 +47,7 @@ var originalTimeout;
 beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userStore.create({
+            case 0: return [4 /*yield*/, user_1.UserStore.create({
                     username: 'belindaberry',
                     firstname: 'belinda',
                     lastname: 'berry',
@@ -59,13 +55,13 @@ beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
                 })];
             case 1:
                 testUser = _a.sent();
-                return [4 /*yield*/, orderStore.create({
+                return [4 /*yield*/, order_1.OrderStore.create({
                         status: 'active',
                         user_id: testUser.id,
                     })];
             case 2:
                 testOrder = _a.sent();
-                return [4 /*yield*/, productStore.create({
+                return [4 /*yield*/, product_1.ProductStore.create({
                         name: 'Papaya',
                         price: 5,
                         category: 'Fruit',
@@ -80,13 +76,13 @@ beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
 }); });
 describe('OrderModel', function () {
     it('should have an addProduct method', function () {
-        expect(store.addProduct).toBeDefined();
+        expect(orderProduct_1.OrderProductStore.addProduct).toBeDefined();
     });
     it('addproduct method should add product to order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var updatedOrder;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.addProduct(1, testOrder.id, testProduct.id)];
+                case 0: return [4 /*yield*/, orderProduct_1.OrderProductStore.addProduct(1, testOrder.id, testProduct.id)];
                 case 1:
                     updatedOrder = _a.sent();
                     expect(updatedOrder.product_id).toEqual(testProduct.id);

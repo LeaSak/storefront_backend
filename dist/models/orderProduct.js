@@ -38,13 +38,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderProductStore = void 0;
 var database_1 = __importDefault(require("../database"));
 var OrderProductStore = /** @class */ (function () {
     function OrderProductStore() {
     }
-    OrderProductStore.prototype.addProduct = function (quantity, orderId, productId) {
+    OrderProductStore.addProduct = function (quantity, orderId, productId) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, order, err_1;
             return __generator(this, function (_a) {
@@ -63,7 +63,7 @@ var OrderProductStore = /** @class */ (function () {
                             throw 'Missing parameters';
                         }
                         sql = 'INSERT INTO order_products (quantity, order_id, product_id) VALUES($1, $2, $3) RETURNING *';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [quantity, orderId, productId])];

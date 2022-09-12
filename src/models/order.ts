@@ -14,7 +14,7 @@ export interface OrderProduct extends Order_DB {
 }
 
 export class OrderStore {
-  async index(): Promise<Order_DB[]> {
+  static async index(): Promise<Order_DB[]> {
     try {
       const conn = await Client.connect();
       const sql = 'SELECT * FROM orders';
@@ -26,7 +26,7 @@ export class OrderStore {
     }
   }
 
-  async show(user_id: number): Promise<Order_DB[]> {
+  static async show(user_id: number): Promise<Order_DB[]> {
     try {
       if (
         Number.isNaN(user_id) ||
@@ -48,7 +48,7 @@ export class OrderStore {
     }
   }
 
-  async create(order: Order): Promise<Order_DB> {
+  static async create(order: Order): Promise<Order_DB> {
     try {
       if (!order || !order.status || Number.isNaN(order.user_id)) {
         throw Error('Missing order information');
@@ -68,7 +68,7 @@ export class OrderStore {
     }
   }
 
-  async update(id: number, order: Order): Promise<Order_DB> {
+  static async update(id: number, order: Order): Promise<Order_DB> {
     try {
       if (
         Number.isNaN(id) ||
@@ -95,7 +95,7 @@ export class OrderStore {
     }
   }
 
-  async delete(id: number): Promise<void> {
+  static async delete(id: number): Promise<void> {
     try {
       if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
         throw Error('Missing id');

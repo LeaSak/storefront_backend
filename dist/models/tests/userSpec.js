@@ -37,13 +37,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var user_1 = require("../user");
-var store = new user_1.UserStore();
 var testUser;
 var originalTimeout;
 beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, store.create({
+            case 0: return [4 /*yield*/, user_1.UserStore.create({
                     username: 'billbrown',
                     firstname: 'bill',
                     lastname: 'brown',
@@ -59,19 +58,19 @@ beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
 }); });
 describe('UserModel', function () {
     it('should have an index method', function () {
-        expect(store.index).toBeDefined();
+        expect(user_1.UserStore.index).toBeDefined();
     });
     it('should have a show method', function () {
-        expect(store.show).toBeDefined();
+        expect(user_1.UserStore.show).toBeDefined();
     });
     it('should have a create method', function () {
-        expect(store.create).toBeDefined();
+        expect(user_1.UserStore.create).toBeDefined();
     });
     it('should have an update method', function () {
-        expect(store.create).toBeDefined();
+        expect(user_1.UserStore.create).toBeDefined();
     });
     it('should have an authenticate method', function () {
-        expect(store.authenticate).toBeDefined();
+        expect(user_1.UserStore.authenticate).toBeDefined();
     });
     it('create method should add a user', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -83,7 +82,7 @@ describe('UserModel', function () {
         var user, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.create({
+                case 0: return [4 /*yield*/, user_1.UserStore.create({
                         username: 'bobbybrown',
                         firstname: 'bobby',
                         lastname: 'brown',
@@ -91,7 +90,7 @@ describe('UserModel', function () {
                     })];
                 case 1:
                     user = _a.sent();
-                    return [4 /*yield*/, store.authenticate(user.username, 'fruitandnuts')];
+                    return [4 /*yield*/, user_1.UserStore.authenticate(user.username, 'fruitandnuts')];
                 case 2:
                     result = (_a.sent()) || {
                         username: '',
@@ -107,7 +106,7 @@ describe('UserModel', function () {
         var updatedUser;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.update({
+                case 0: return [4 /*yield*/, user_1.UserStore.update({
                         id: testUser.id,
                         username: 'billblue',
                         firstname: 'bill',
@@ -125,7 +124,7 @@ describe('UserModel', function () {
         var user, deletedUser;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.create({
+                case 0: return [4 /*yield*/, user_1.UserStore.create({
                         username: 'billybrown',
                         firstname: 'billy',
                         lastname: 'brown',
@@ -133,7 +132,7 @@ describe('UserModel', function () {
                     })];
                 case 1:
                     user = _a.sent();
-                    return [4 /*yield*/, store.delete(user.id)];
+                    return [4 /*yield*/, user_1.UserStore.delete(user.id)];
                 case 2:
                     deletedUser = _a.sent();
                     expect(deletedUser).toEqual(undefined);

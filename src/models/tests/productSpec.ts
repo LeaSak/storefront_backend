@@ -1,10 +1,10 @@
 import { ProductStore, Product_DB } from '../product';
-const store = new ProductStore();
+
 let originalTimeout: number;
 let raspberries: Product_DB;
 
 beforeAll(async (): Promise<void> => {
-  raspberries = await store.create({
+  raspberries = await ProductStore.create({
     name: 'Raspberries',
     price: 2,
     category: 'Fruit',
@@ -15,27 +15,27 @@ beforeAll(async (): Promise<void> => {
 
 describe('ProductModel', (): void => {
   it('should have an index method', () => {
-    expect(store.index).toBeDefined();
+    expect(ProductStore.index).toBeDefined();
   });
 
   it('should have a show method', (): void => {
-    expect(store.show).toBeDefined();
+    expect(ProductStore.show).toBeDefined();
   });
 
   it('should have a create method', (): void => {
-    expect(store.create).toBeDefined();
+    expect(ProductStore.create).toBeDefined();
   });
 
   it('should have a update method', (): void => {
-    expect(store.update).toBeDefined();
+    expect(ProductStore.update).toBeDefined();
   });
 
   it('should have a delete method', (): void => {
-    expect(store.delete).toBeDefined();
+    expect(ProductStore.delete).toBeDefined();
   });
 
   it('create method should add a product', async (): Promise<void> => {
-    const result = await store.create({
+    const result = await ProductStore.create({
       name: 'Bananas',
       price: 1,
       category: 'Fruit',
@@ -49,17 +49,17 @@ describe('ProductModel', (): void => {
   });
 
   it('index method should list all products', async (): Promise<void> => {
-    const result = await store.index();
+    const result = await ProductStore.index();
     expect(result.length).not.toEqual(0);
   });
 
   it('show method should get product by id', async (): Promise<void> => {
-    const result = await store.show(raspberries.id);
+    const result = await ProductStore.show(raspberries.id);
     expect(result.id).toBe(raspberries.id);
   });
 
   it('update method should update product by id', async (): Promise<void> => {
-    const result = await store.update(raspberries.id, {
+    const result = await ProductStore.update(raspberries.id, {
       name: raspberries.name,
       price: 3,
       category: raspberries.category,

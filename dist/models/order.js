@@ -38,20 +38,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderStore = void 0;
 var database_1 = __importDefault(require("../database"));
 var OrderStore = /** @class */ (function () {
     function OrderStore() {
     }
-    OrderStore.prototype.index = function () {
+    OrderStore.index = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM orders';
@@ -68,7 +68,7 @@ var OrderStore = /** @class */ (function () {
             });
         });
     };
-    OrderStore.prototype.show = function (user_id) {
+    OrderStore.show = function (user_id) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, err_2;
             return __generator(this, function (_a) {
@@ -81,7 +81,7 @@ var OrderStore = /** @class */ (function () {
                             throw Error('Missing id');
                         }
                         sql = 'SELECT * FROM orders WHERE user_id=($1)';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [user_id])];
@@ -97,7 +97,7 @@ var OrderStore = /** @class */ (function () {
             });
         });
     };
-    OrderStore.prototype.create = function (order) {
+    OrderStore.create = function (order) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, createdOrder, err_3;
             return __generator(this, function (_a) {
@@ -108,7 +108,7 @@ var OrderStore = /** @class */ (function () {
                             throw Error('Missing order information');
                         }
                         sql = 'INSERT INTO orders (status, user_id) VALUES($1, $2) RETURNING *';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [order.status, order.user_id])];
@@ -125,7 +125,7 @@ var OrderStore = /** @class */ (function () {
             });
         });
     };
-    OrderStore.prototype.update = function (id, order) {
+    OrderStore.update = function (id, order) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, updatedOrder, err_4;
             return __generator(this, function (_a) {
@@ -141,7 +141,7 @@ var OrderStore = /** @class */ (function () {
                             throw Error('Missing order information');
                         }
                         sql = 'UPDATE orders SET status=($1), user_id=($2) WHERE id=($3) RETURNING *;';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [order.status, order.user_id, id])];
@@ -158,7 +158,7 @@ var OrderStore = /** @class */ (function () {
             });
         });
     };
-    OrderStore.prototype["delete"] = function (id) {
+    OrderStore.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, deletedOrder, err_5;
             return __generator(this, function (_a) {
@@ -169,7 +169,7 @@ var OrderStore = /** @class */ (function () {
                             throw Error('Missing id');
                         }
                         sql = 'DELETE FROM orders WHERE id=($1)';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [id])];

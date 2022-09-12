@@ -18,7 +18,7 @@ export interface User_Verify {
 }
 
 export class UserStore {
-  async index(): Promise<User[]> {
+  static async index(): Promise<User[]> {
     try {
       const conn = await Client.connect();
       const sql = 'SELECT * FROM users';
@@ -33,7 +33,7 @@ export class UserStore {
     }
   }
 
-  async create(user: User): Promise<User_DB> {
+  static async create(user: User): Promise<User_DB> {
     try {
       if (
         !user ||
@@ -70,7 +70,7 @@ export class UserStore {
     }
   }
 
-  async show(id: string): Promise<User> {
+  static async show(id: string): Promise<User> {
     try {
       if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
         throw Error('Missing id');
@@ -87,7 +87,7 @@ export class UserStore {
     }
   }
 
-  async update(user: User_DB): Promise<User_DB> {
+  static async update(user: User_DB): Promise<User_DB> {
     try {
       if (
         !user ||
@@ -121,7 +121,7 @@ export class UserStore {
     }
   }
 
-  async delete(id: number): Promise<void> {
+  static async delete(id: number): Promise<void> {
     try {
       if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
         throw Error('Missing id');
@@ -140,7 +140,7 @@ export class UserStore {
     }
   }
 
-  async authenticate(
+  static async authenticate(
     username: string,
     password: string
   ): Promise<User_DB | null> {

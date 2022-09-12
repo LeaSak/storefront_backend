@@ -38,21 +38,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserStore = void 0;
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var database_1 = __importDefault(require("../database"));
 var UserStore = /** @class */ (function () {
     function UserStore() {
     }
-    UserStore.prototype.index = function () {
+    UserStore.index = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM users';
@@ -69,7 +69,7 @@ var UserStore = /** @class */ (function () {
             });
         });
     };
-    UserStore.prototype.create = function (user) {
+    UserStore.create = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, hash, result, createdUser, err_2;
             return __generator(this, function (_a) {
@@ -84,10 +84,10 @@ var UserStore = /** @class */ (function () {
                             throw Error('Missing user parameters');
                         }
                         sql = 'INSERT INTO users (username, firstname, lastname, password) VALUES($1, $2, $3, $4) RETURNING *';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        hash = bcrypt_1["default"].hashSync(user.password + process.env.BCRYPT_PASSWORD, parseInt(process.env.SALT_ROUNDS));
+                        hash = bcrypt_1.default.hashSync(user.password + process.env.BCRYPT_PASSWORD, parseInt(process.env.SALT_ROUNDS));
                         return [4 /*yield*/, conn.query(sql, [
                                 user.username,
                                 user.firstname,
@@ -107,7 +107,7 @@ var UserStore = /** @class */ (function () {
             });
         });
     };
-    UserStore.prototype.show = function (id) {
+    UserStore.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, user, err_3;
             return __generator(this, function (_a) {
@@ -118,7 +118,7 @@ var UserStore = /** @class */ (function () {
                             throw Error('Missing id');
                         }
                         sql = 'SELECT * FROM users WHERE id=($1)';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [parseInt(id)])];
@@ -135,7 +135,7 @@ var UserStore = /** @class */ (function () {
             });
         });
     };
-    UserStore.prototype.update = function (user) {
+    UserStore.update = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var hash, sql, conn, result, updatedUser, err_4;
             return __generator(this, function (_a) {
@@ -150,9 +150,9 @@ var UserStore = /** @class */ (function () {
                             !user.password) {
                             throw Error('Missing parameters');
                         }
-                        hash = bcrypt_1["default"].hashSync(user.password + process.env.BCRYPT_PASSWORD, parseInt(process.env.SALT_ROUNDS));
+                        hash = bcrypt_1.default.hashSync(user.password + process.env.BCRYPT_PASSWORD, parseInt(process.env.SALT_ROUNDS));
                         sql = 'UPDATE users SET username = $2, firstname = $3, lastname = $4, password = $5 WHERE id=$1 RETURNING *';
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [
@@ -175,7 +175,7 @@ var UserStore = /** @class */ (function () {
             });
         });
     };
-    UserStore.prototype["delete"] = function (id) {
+    UserStore.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, deletedUser, err_5;
             return __generator(this, function (_a) {
@@ -185,7 +185,7 @@ var UserStore = /** @class */ (function () {
                         if (Number.isNaN(id) || typeof id == 'undefined' || id == null) {
                             throw Error('Missing id');
                         }
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'DELETE FROM users WHERE id=($1)';
@@ -203,7 +203,7 @@ var UserStore = /** @class */ (function () {
             });
         });
     };
-    UserStore.prototype.authenticate = function (username, password) {
+    UserStore.authenticate = function (username, password) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, user;
             return __generator(this, function (_a) {
@@ -212,7 +212,7 @@ var UserStore = /** @class */ (function () {
                         if (!username || !password) {
                             throw Error('Missing username and or password');
                         }
-                        return [4 /*yield*/, database_1["default"].connect()];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
                         sql = 'SELECT * FROM users WHERE username=($1)';
@@ -221,7 +221,7 @@ var UserStore = /** @class */ (function () {
                         result = _a.sent();
                         if (result.rows.length) {
                             user = result.rows[0];
-                            if (bcrypt_1["default"].compareSync(password + process.env.BCRYPT_PASSWORD, user.password)) {
+                            if (bcrypt_1.default.compareSync(password + process.env.BCRYPT_PASSWORD, user.password)) {
                                 return [2 /*return*/, user];
                             }
                         }

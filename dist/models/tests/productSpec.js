@@ -37,13 +37,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var product_1 = require("../product");
-var store = new product_1.ProductStore();
 var originalTimeout;
 var raspberries;
 beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, store.create({
+            case 0: return [4 /*yield*/, product_1.ProductStore.create({
                     name: 'Raspberries',
                     price: 2,
                     category: 'Fruit',
@@ -58,25 +57,25 @@ beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
 }); });
 describe('ProductModel', function () {
     it('should have an index method', function () {
-        expect(store.index).toBeDefined();
+        expect(product_1.ProductStore.index).toBeDefined();
     });
     it('should have a show method', function () {
-        expect(store.show).toBeDefined();
+        expect(product_1.ProductStore.show).toBeDefined();
     });
     it('should have a create method', function () {
-        expect(store.create).toBeDefined();
+        expect(product_1.ProductStore.create).toBeDefined();
     });
     it('should have a update method', function () {
-        expect(store.update).toBeDefined();
+        expect(product_1.ProductStore.update).toBeDefined();
     });
     it('should have a delete method', function () {
-        expect(store.delete).toBeDefined();
+        expect(product_1.ProductStore.delete).toBeDefined();
     });
     it('create method should add a product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.create({
+                case 0: return [4 /*yield*/, product_1.ProductStore.create({
                         name: 'Bananas',
                         price: 1,
                         category: 'Fruit',
@@ -97,7 +96,7 @@ describe('ProductModel', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.index()];
+                case 0: return [4 /*yield*/, product_1.ProductStore.index()];
                 case 1:
                     result = _a.sent();
                     expect(result.length).not.toEqual(0);
@@ -109,7 +108,7 @@ describe('ProductModel', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.show(raspberries.id)];
+                case 0: return [4 /*yield*/, product_1.ProductStore.show(raspberries.id)];
                 case 1:
                     result = _a.sent();
                     expect(result.id).toBe(raspberries.id);
@@ -121,7 +120,7 @@ describe('ProductModel', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.update(raspberries.id, {
+                case 0: return [4 /*yield*/, product_1.ProductStore.update(raspberries.id, {
                         name: raspberries.name,
                         price: 3,
                         category: raspberries.category,
