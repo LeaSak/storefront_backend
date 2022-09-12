@@ -83,7 +83,6 @@ var OrderHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     OrderHandler.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var order, createdProduct, err_1;
@@ -109,7 +108,6 @@ var OrderHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     OrderHandler.addProduct = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var orderId, productId, quantity, addedProduct, err_2;
@@ -137,7 +135,6 @@ var OrderHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     OrderHandler.destroy = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var deleted, error_3;
@@ -159,7 +156,6 @@ var OrderHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     OrderHandler.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var order, updated, error_4;
@@ -185,7 +181,6 @@ var OrderHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     return OrderHandler;
 }());
 exports.default = OrderHandler;

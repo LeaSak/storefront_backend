@@ -50,7 +50,7 @@ export default class ProductHandler {
     try {
       const product: Product = {
         name: req.body.name,
-        price: parseInt(req.body.price),
+        price: parseFloat(req.body.price),
         category: req.body.category,
       };
       const updated = await ProductStore.update(

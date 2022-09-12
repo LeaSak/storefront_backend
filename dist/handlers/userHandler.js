@@ -65,7 +65,6 @@ var UserHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     UserHandler.show = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var user, error_2;
@@ -87,7 +86,6 @@ var UserHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     UserHandler.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var user, createdUser, token, error_3;
@@ -118,7 +116,6 @@ var UserHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     UserHandler.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var user, token, e_1;
@@ -150,7 +147,6 @@ var UserHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     UserHandler.destroy = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var deleted, error_4;
@@ -172,7 +168,6 @@ var UserHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     UserHandler.authenticate = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var user, result, token, error_5;
@@ -203,7 +198,6 @@ var UserHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     return UserHandler;
 }());
 exports.default = UserHandler;

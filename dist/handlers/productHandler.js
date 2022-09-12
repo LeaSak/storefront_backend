@@ -61,7 +61,6 @@ var ProductHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     ProductHandler.show = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var product, error_2;
@@ -83,7 +82,6 @@ var ProductHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     ProductHandler.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var product, createdProduct, err_1;
@@ -110,7 +108,6 @@ var ProductHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     ProductHandler.destroy = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var deleted, error_3;
@@ -132,7 +129,6 @@ var ProductHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     ProductHandler.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var product, updated, error_4;
@@ -142,7 +138,7 @@ var ProductHandler = /** @class */ (function () {
                         _a.trys.push([0, 2, , 3]);
                         product = {
                             name: req.body.name,
-                            price: parseInt(req.body.price),
+                            price: parseFloat(req.body.price),
                             category: req.body.category,
                         };
                         return [4 /*yield*/, product_1.ProductStore.update(parseInt(req.params.id), product)];
@@ -159,7 +155,6 @@ var ProductHandler = /** @class */ (function () {
             });
         });
     };
-    ;
     return ProductHandler;
 }());
 exports.default = ProductHandler;
