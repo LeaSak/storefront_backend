@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { User, User_DB, UserStore } from '../models/user';
+import { User, User_DB, UserStore, User_Verify } from '../models/user';
 import jwt from 'jsonwebtoken';
 
 export default class UserHandler {
@@ -49,6 +49,14 @@ export default class UserHandler {
       password: req.body.password as string,
     };
     try {
+      const authorizationHeader = req.headers.authorization as string;
+      const headerToken = authorizationHeader ? authorizationHeader.split(' ')[1] : '';
+      const decodedData = jwt.verify(headerToken, process.env.TOKEN_SECRET as string) as User_Verify;
+      
+      if (decodedData.user.id !== user.id){
+        throw Error("User can only update own user data");
+      }
+      
       await UserStore.update(user);
       const token = jwt.sign(
         { user: user },
