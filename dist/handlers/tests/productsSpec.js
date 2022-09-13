@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
-var server_1 = __importDefault(require("../../../../server"));
+var server_1 = __importDefault(require("../../server"));
 var request = (0, supertest_1.default)(server_1.default);
 var token;
 var originalTimeout;
@@ -89,12 +89,12 @@ describe('', function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
                             .post('/api/products')
+                            .auth(token, { type: 'bearer' })
                             .send({
                             name: 'Pineapple',
                             price: 2,
                             category: 'Fruit',
-                        })
-                            .auth(token, { type: 'bearer' })];
+                        })];
                     case 1:
                         response = _a.sent();
                         expect(response.status).toBe(200);
@@ -111,12 +111,12 @@ describe('', function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
                             .post('/api/products')
+                            .auth(token, { type: 'bearer' })
                             .send({
                             name: 'Papaya',
                             price: 2,
                             category: 'Fruit',
-                        })
-                            .auth(token, { type: 'bearer' })];
+                        })];
                     case 1:
                         productReponse = _a.sent();
                         return [4 /*yield*/, request.get('/api/products/' + productReponse.body.id)];
@@ -136,12 +136,12 @@ describe('', function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
                             .post('/api/products')
+                            .auth(token, { type: 'bearer' })
                             .send({
                             name: 'Tomato',
                             price: 2,
                             category: 'Fruit',
-                        })
-                            .auth(token, { type: 'bearer' })];
+                        })];
                     case 1:
                         productReponse = _a.sent();
                         return [4 /*yield*/, request
@@ -163,22 +163,22 @@ describe('', function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
                             .post('/api/products')
+                            .auth(token, { type: 'bearer' })
                             .send({
                             name: 'Passionfruit',
                             price: 2,
                             category: 'Fruit',
-                        })
-                            .auth(token, { type: 'bearer' })];
+                        })];
                     case 1:
                         productReponse = _a.sent();
                         return [4 /*yield*/, request
                                 .put('/api/products/' + productReponse.body.id)
+                                .auth(token, { type: 'bearer' })
                                 .send({
                                 name: 'Passionfruit',
                                 price: 4,
                                 category: 'Fruit',
-                            })
-                                .auth(token, { type: 'bearer' })];
+                            })];
                     case 2:
                         response = _a.sent();
                         expect(response.status).toBe(200);

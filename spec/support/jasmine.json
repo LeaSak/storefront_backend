@@ -2,7 +2,7 @@
   "spec_dir": "dist",
   "spec_files": [
     "models/tests/*[sS]pec.js",
-    "server/routes/api/tests/*[sS]pec.js"
+    "models/handlers/tests/*[sS]pec.js"
   ],
   "helpers": [
     "helpers/**/*.js"

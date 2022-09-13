@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import app from '../../../../server';
+import app from '../../server';
 
 const request: supertest.SuperTest<supertest.Test> = supertest(app);
 let token: string;
@@ -29,12 +29,12 @@ describe('', function () {
     it('should create a product', async (): Promise<void> => {
       const response = await request
         .post('/api/products')
+        .auth(token, { type: 'bearer' })
         .send({
           name: 'Pineapple',
           price: 2,
           category: 'Fruit',
-        })
-        .auth(token, { type: 'bearer' });
+        });
       expect(response.status).toBe(200);
     });
   });
@@ -43,12 +43,12 @@ describe('', function () {
     it('test request: product by id', async (): Promise<void> => {
       const productReponse = await request
         .post('/api/products')
+        .auth(token, { type: 'bearer' })
         .send({
           name: 'Papaya',
           price: 2,
           category: 'Fruit',
-        })
-        .auth(token, { type: 'bearer' });
+        });
       const response = await request.get(
         '/api/products/' + productReponse.body.id
       );
@@ -60,12 +60,12 @@ describe('', function () {
     it('test request: product by id', async (): Promise<void> => {
       const productReponse = await request
         .post('/api/products')
+        .auth(token, { type: 'bearer' })
         .send({
           name: 'Tomato',
           price: 2,
           category: 'Fruit',
-        })
-        .auth(token, { type: 'bearer' });
+        });
       const response = await request
         .delete('/api/products/' + productReponse.body.id)
         .auth(token, { type: 'bearer' });
@@ -77,20 +77,20 @@ describe('', function () {
     it('test request: update product by id', async (): Promise<void> => {
       const productReponse = await request
         .post('/api/products')
+        .auth(token, { type: 'bearer' })
         .send({
           name: 'Passionfruit',
           price: 2,
           category: 'Fruit',
-        })
-        .auth(token, { type: 'bearer' });
+        });
       const response = await request
         .put('/api/products/' + productReponse.body.id)
+        .auth(token, { type: 'bearer' })
         .send({
           name: 'Passionfruit',
           price: 4,
           category: 'Fruit',
-        })
-        .auth(token, { type: 'bearer' });
+        });
       expect(response.status).toBe(200);
     });
   });

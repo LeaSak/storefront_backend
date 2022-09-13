@@ -40,30 +40,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
-var server_1 = __importDefault(require("../../../../server"));
+var server_1 = __importDefault(require("../../server"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var request = (0, supertest_1.default)(server_1.default);
 var originalTimeout;
 var userData;
 var userInfo = {
-    username: 'violetcrumble',
-    firstname: 'violet',
-    lastname: 'crumble',
-    password: 'crunch',
+    username: 'cherryripe',
+    firstname: 'cherry',
+    lastname: 'ripe',
+    password: 'coconut',
 };
 var token;
-var status;
+var order;
+var orderStatus;
+var orderInfo = { status: 'active', user_id: 0 };
+var product;
 beforeAll(function () {
     return __awaiter(this, void 0, void 0, function () {
-        var response;
+        var response, orderRequest, productRequest;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, request.post('/api/users').send(userInfo)];
                 case 1:
                     response = _a.sent();
-                    status = response.status;
                     token = response.body;
                     userData = jsonwebtoken_1.default.decode(token);
+                    orderInfo.user_id = userData.user.id;
+                    return [4 /*yield*/, request
+                            .post('/api/orders')
+                            .auth(token, { type: 'bearer' })
+                            .send(orderInfo)];
+                case 2:
+                    orderRequest = _a.sent();
+                    order = orderRequest.body;
+                    orderStatus = orderRequest.status;
+                    return [4 /*yield*/, request
+                            .post('/api/products')
+                            .auth(token, { type: 'bearer' })
+                            .send({
+                            name: 'Cherries',
+                            price: 2,
+                            category: 'Fruit',
+                        })];
+                case 3:
+                    productRequest = _a.sent();
+                    product = productRequest.body;
                     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
                     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
                     return [2 /*return*/];
@@ -71,16 +93,16 @@ beforeAll(function () {
         });
     });
 });
-describe('Users', function () {
+describe('Orders', function () {
     var _this = this;
-    describe('GET users', function () {
+    describe('Status 200', function () {
         var _this = this;
-        it('test request: all users', function () { return __awaiter(_this, void 0, void 0, function () {
+        it('test request: all orders', function () { return __awaiter(_this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
-                            .get('/api/users')
+                            .get('/api/orders')
                             .auth(token, { type: 'bearer' })];
                     case 1:
                         response = _a.sent();
@@ -90,14 +112,14 @@ describe('Users', function () {
             });
         }); });
     });
-    describe('GET user by id', function () {
+    describe('Status 200', function () {
         var _this = this;
-        it('test request: user by id', function () { return __awaiter(_this, void 0, void 0, function () {
+        it('test request: all orders by user', function () { return __awaiter(_this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
-                            .get('/api/users/' + userData.user.id)
+                            .get('/api/orders/' + userData.user.id)
                             .auth(token, { type: 'bearer' })];
                     case 1:
                         response = _a.sent();
@@ -108,27 +130,25 @@ describe('Users', function () {
         }); });
     });
     describe('POST user', function () {
-        it('should create a user', function () { return __awaiter(_this, void 0, void 0, function () {
+        it('should create an order', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                expect(status).toBe(200);
+                expect(orderStatus).toBe(200);
                 return [2 /*return*/];
             });
         }); });
     });
-    describe('UPDATE user', function () {
-        it('should update a user', function () { return __awaiter(_this, void 0, void 0, function () {
+    describe('UPDATE order', function () {
+        it('should update an order', function () { return __awaiter(_this, void 0, void 0, function () {
             var update;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
-                            .put('/api/users/' + userData.user.id)
+                            .put('/api/orders/' + order.id)
+                            .auth(token, { type: 'bearer' })
                             .send({
-                            username: userData.user.username,
-                            firstname: userData.user.firstname,
-                            lastname: userData.user.lastname,
-                            password: 'crunchy',
-                        })
-                            .auth(token, { type: 'bearer' })];
+                            status: 'pending',
+                            user_id: order.user_id,
+                        })];
                     case 1:
                         update = _a.sent();
                         expect(update.status).toBe(200);
@@ -137,17 +157,40 @@ describe('Users', function () {
             });
         }); });
     });
-    describe('DELETE user', function () {
-        it('should delete a user', function () { return __awaiter(_this, void 0, void 0, function () {
-            var deleteUser;
+    describe('ADD products to order', function () {
+        it('should add a product to an order', function () { return __awaiter(_this, void 0, void 0, function () {
+            var update;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, request
-                            .delete('/api/users/' + userData.user.id)
-                            .auth(token, { type: 'bearer' })];
+                            .post('/api/orders/' + String(order.id) + '/products')
+                            .auth(token, { type: 'bearer' })
+                            .send({ quantity: 2, product_id: product.id })];
                     case 1:
-                        deleteUser = _a.sent();
-                        expect(deleteUser.status).toBe(200);
+                        update = _a.sent();
+                        expect(update.status).toBe(200);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    });
+    describe('DELETE an order', function () {
+        it('should delete an order', function () { return __awaiter(_this, void 0, void 0, function () {
+            var testOrder, deleteOrder;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, request
+                            .post('/api/orders')
+                            .auth(token, { type: 'bearer' })
+                            .send(orderInfo)];
+                    case 1:
+                        testOrder = _a.sent();
+                        return [4 /*yield*/, request
+                                .delete('/api/orders/' + testOrder.body.id)
+                                .auth(token, { type: 'bearer' })];
+                    case 2:
+                        deleteOrder = _a.sent();
+                        expect(deleteOrder.status).toBe(200);
                         return [2 /*return*/];
                 }
             });

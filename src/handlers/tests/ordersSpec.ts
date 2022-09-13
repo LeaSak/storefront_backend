@@ -1,9 +1,9 @@
 import supertest from 'supertest';
-import { User, User_Verify } from '../../../../models/user';
-import app from '../../../../server';
+import { User, User_Verify } from '../../models/user';
+import app from '../../server';
 import jwt from 'jsonwebtoken';
-import { Order, Order_DB } from '../../../../models/order';
-import { Product_DB } from '../../../../models/product';
+import { Order, Order_DB } from '../../models/order';
+import { Product_DB } from '../../models/product';
 
 const request: supertest.SuperTest<supertest.Test> = supertest(app);
 let originalTimeout: number;
@@ -28,20 +28,20 @@ beforeAll(async function () {
 
   const orderRequest = await request
     .post('/api/orders')
+    .auth(token, { type: 'bearer' })
     .send(orderInfo)
-    .auth(token, { type: 'bearer' });
 
   order = orderRequest.body;
   orderStatus = orderRequest.status;
 
   const productRequest = await request
     .post('/api/products')
+    .auth(token, { type: 'bearer' })
     .send({
       name: 'Cherries',
       price: 2,
       category: 'Fruit',
     })
-    .auth(token, { type: 'bearer' });
   product = productRequest.body;
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
@@ -76,11 +76,11 @@ describe('Orders', function () {
     it('should update an order', async (): Promise<void> => {
       const update = await request
         .put('/api/orders/' + order.id)
+        .auth(token, { type: 'bearer' })
         .send({
           status: 'pending',
           user_id: order.user_id,
-        })
-        .auth(token, { type: 'bearer' });
+        });
       expect(update.status).toBe(200);
     });
   });
@@ -89,8 +89,8 @@ describe('Orders', function () {
     it('should add a product to an order', async (): Promise<void> => {
       const update = await request
         .post('/api/orders/' + String(order.id) + '/products')
-        .send({ quantity: 2, product_id: product.id })
-        .auth(token, { type: 'bearer' });
+        .auth(token, { type: 'bearer' })
+        .send({ quantity: 2, product_id: product.id });
       expect(update.status).toBe(200);
     });
   });
@@ -99,8 +99,8 @@ describe('Orders', function () {
     it('should delete an order', async (): Promise<void> => {
       const testOrder = await request
         .post('/api/orders')
-        .send(orderInfo)
-        .auth(token, { type: 'bearer' });
+        .auth(token, { type: 'bearer' })
+        .send(orderInfo);
 
       const deleteOrder = await request
         .delete('/api/orders/' + testOrder.body.id)

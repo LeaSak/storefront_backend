@@ -1,6 +1,6 @@
 import supertest from 'supertest';
-import { User, User_Verify } from '../../../../models/user';
-import app from '../../../../server';
+import { User, User_Verify } from '../../models/user';
+import app from '../../server';
 import jwt from 'jsonwebtoken';
 
 const request: supertest.SuperTest<supertest.Test> = supertest(app);

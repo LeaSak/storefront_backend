@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app: express.Application = express();
-const address = '0.0.0.0:3000';
+const address = process.env.POSTGRES_HOST;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -15,7 +15,7 @@ app.get('/', function (req: Request, res: Response): void {
 
 app.use('/api', routes);
 
-app.listen(3000, function (): void {
+app.listen(process.env.PORT, function (): void {
   console.log(`starting app on: ${address}`);
 });
 

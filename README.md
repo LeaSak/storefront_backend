@@ -15,6 +15,7 @@ The application uses the following libraries:
 
 ## Project Setup
 This project has been developed locally. You need to take a few steps to get it running.
+The database is configured to run on the default port 5432. The server can be accessed via port 3000: http://localhost:3000 This can be changed in the environment variables.
 
 ### 1. Environment variables
 Create a plain text file and call it '.env'. Add environment variables like the ones created in the .envExample file. This needs to be in the project's root directory. If the `ENV` variable is set to test, the test environment variables will be used. See the `database.config.json`. All tests are run on the test database. Therefore a test database will need to be setup for tests to run.

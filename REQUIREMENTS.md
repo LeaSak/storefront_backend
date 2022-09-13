@@ -40,12 +40,18 @@ These are the notes from a meeting with the frontend developer that describe wha
 - lastName
 - password
 
-#### Orders
+#### Order
 - id
 - id of each product in the order
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+
+#### Order Product
+- id 
+- quantity 
+- order_id 
+- product_id
 
 ### Database schema
 - users (id SERIAL PRIMARY KEY, username VARCHAR(255), firstname VARCHAR(255), lastname VARCHAR(255), password VARCHAR(255))
